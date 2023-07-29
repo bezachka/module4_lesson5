@@ -8,3 +8,11 @@ class Advertisment(models.Model):
     price = models.FloatField('Цена')
     user = models.CharField('Пользователь', max_length=126)
     date = models.DateField('Дата', auto_now_add=True)
+
+
+    def __str__(self):
+        return f'Advertisment(id = {self.id}, title = {self.title}, price = {self.price})'
+    
+
+    class Meta:
+        db_table = 'advertisment'
