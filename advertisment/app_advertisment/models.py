@@ -8,6 +8,7 @@ class Advertisment(models.Model):
     price = models.FloatField('Цена')
     user = models.CharField('Пользователь', max_length=126)
     date = models.DateField('Дата', auto_now_add=True)
+    auction_test = models.BooleanField('торг', help_text='Возможен торг или нет', default=False)
 
 
     def __str__(self):
