@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Advertisment
 
 
 # Create your views here.
 
 def index(request):
+    adv = Advertisment(title = f'Объявление создано через views', text = 'Кто-то перешел в index.html', price = 100, user = 'admin')
+    adv.save()
     return render(request, 'index.html')
 
 def top_sellers(request):
