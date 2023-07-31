@@ -28,7 +28,7 @@ class Advertisment(models.Model):
         if self.created_at.date() == timezone.now().date():
             create_time = self.created_at.time().strftime('%H:%M:%S')
             return format_html(
-                '<span style - "color:green">Сегодня в {}</span>',create_time
+                '<span style = "color:green">Сегодня в {}</span>',create_time
             )
         return self.created_at.strftime('%d.%m.%Y in %H:%M:%S')
 
@@ -40,7 +40,7 @@ class Advertisment(models.Model):
         if self.update_at.date() == timezone.now().date():
             update_time = self.update_at.time().strftime('%H:%M:%S')
             return format_html(
-                '<span style - "color:green">Сегодня в {}</span>',update_time
+                '<span style = "color:purple">Сегодня в {}</span>',update_time
             )
         return self.update_at.strftime('%d.%m.%Y in %H:%M:%S')
 
