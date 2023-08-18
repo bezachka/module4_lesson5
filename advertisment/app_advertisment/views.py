@@ -6,9 +6,12 @@ from .models import Advertisment
 # Create your views here.
 
 def index(request):
-    adv = Advertisment(title = f'Объявление создано через views', text = 'Кто-то перешел в index.html', price = 100, user = 'admin')
-    adv.save()
-    return render(request, 'index.html')
+    #adv = Advertisment(title = f'Объявление создано через views', text = 'Кто-то перешел в index.html', price = 100, user = 'admin')
+    #adv.save()
+
+    advertisements = Advertisment.objects.all()
+    context = {'advertisments': advertisements}
+    return render(request, 'index.html', context)
 
 def top_sellers(request):
     return render(request, 'top-sellers.html')
