@@ -17,11 +17,13 @@ class Advertisment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField('изображение', upload_to='advertisment/media')
     
 
 
     def __str__(self):
         return f'Advertisment(id = {self.user}, title = {self.title}, price = {self.price})'
+    
     
 
     @admin.display(description="дата создания")
@@ -47,6 +49,19 @@ class Advertisment(models.Model):
                 '<span style = "color:purple">Сегодня в {}</span>',update_time
             )
         return self.update_at.strftime('%d.%m.%Y in %H:%M:%S')
+    
+    @admin.display(description='фото')
+    def photo(self):
+        from django.utils.html import format_html
+        if self.image:
+            return format_html(
+                " <img src='{}' width = '100px' heigth = '100px' > ",
+                self.image.url
+            )
+        return format_html(
+            "<img src = 'http://127.0.0.1:8000/media/adv.png' width = '100px'> heigth = '100px' ",
+            
+        )
 
 
 
