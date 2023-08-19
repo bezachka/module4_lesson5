@@ -14,10 +14,10 @@ def index(request):
 
     advertisements = Advertisment.objects.all()
     context = {'advertisments': advertisements}
-    return render(request, 'index.html', context)
+    return render(request, 'advertisment/index.html', context)
 
 def top_sellers(request):
-    return render(request, 'top-sellers.html')
+    return render(request, 'advertisment/top-sellers.html')
 
 def register(request):
     return render(request, 'register.html')
@@ -44,9 +44,9 @@ def advertisement_post(request : WSGIRequest):
     else:
         form = AdvertismentForm()
         context = {'form': form}
-        return render(request, 'advertisement-post.html', context)
+        return render(request, 'advertisment/advertisement-post.html', context)
 
 def advertisement(request):
-    return render(request, 'advertisement.html')
+    return render(request, 'advertisment/advertisement.html')
 
    
