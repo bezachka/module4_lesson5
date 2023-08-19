@@ -20,13 +20,13 @@ def top_sellers(request):
     return render(request, 'advertisment/top-sellers.html')
 
 def register(request):
-    return render(request, 'register.html')
+    return render(request, 'auth/register.html')
 
 def login(request):
-    return render(request, 'login.html')
+    return render(request, 'auth/login.html')
 
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'auth/profile.html')
 
 def advertisement_post(request : WSGIRequest):
     print(request.POST)
