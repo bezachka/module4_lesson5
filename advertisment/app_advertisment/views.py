@@ -30,6 +30,9 @@ def index(request):
 def top_sellers(request):
     return render(request, 'advertisment/top-sellers.html')
 
+def register(request):
+    return render(request, 'auth/register.html')
+
 
 def advertisement_post(request : WSGIRequest):
     print(request.POST)
