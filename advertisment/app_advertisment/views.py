@@ -4,6 +4,7 @@ from .models import Advertisment
 from .forms import AdvertismentForm
 from django.core.handlers.wsgi import WSGIRequest
 from django.urls import reverse
+import requests
 
 
 # Create your views here.
@@ -13,20 +14,22 @@ def index(request):
     #adv.save()
 
     advertisements = Advertisment.objects.all()
-    context = {'advertisments': advertisements}
+    
+
+    title = request.GET.get('query')
+    if title:
+        advertisements = Advertisment.objects.filter(title__icontains = title)
+    else:
+        advertisements = Advertisment.objects.all()
+
+    context = {'advertisments': advertisements,
+               'title' : title,
+               }
     return render(request, 'advertisment/index.html', context)
 
 def top_sellers(request):
     return render(request, 'advertisment/top-sellers.html')
 
-def register(request):
-    return render(request, 'auth/register.html')
-
-def login(request):
-    return render(request, 'auth/login.html')
-
-def profile(request):
-    return render(request, 'auth/profile.html')
 
 def advertisement_post(request : WSGIRequest):
     print(request.POST)
@@ -46,7 +49,10 @@ def advertisement_post(request : WSGIRequest):
         context = {'form': form}
         return render(request, 'advertisment/advertisement-post.html', context)
 
-def advertisement(request):
-    return render(request, 'advertisment/advertisement.html')
+def advertisement(request, pk):
+    advertisment = Advertisment.objects.get(id = pk)
+    context = {'advertisment' : advertisement}
+
+    return render(request, 'advertisment/advertisement.html', context)
 
    
